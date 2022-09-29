@@ -151,7 +151,26 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
    */
   @Override
   public boolean isGameOver() {
-    return false;
+
+    int gameBoardSize = this.getBoardSize();
+
+    for (int i = 0; i < gameBoardSize; i++) {
+      for (int j = 0; j < gameBoardSize; j++) {
+        if ((this.anyMovesLeft(i, j)) && gameBoard.get(i).get(j).equals(SlotState.Marble)) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  protected boolean anyMovesLeft(int row, int col) {
+    int gameBoardSize = this.getBoardSize();
+
+    return ((row > 1 && this.validMoveHelper(row, col, row - 2, col)) ||
+            (col > 1 && this.validMoveHelper(row, col, row, col - 2)) ||
+            (row < (gameBoardSize - 1) && this.validMoveHelper(row, col, row + 2, col)) ||
+            (col < (gameBoardSize - 1) && this.validMoveHelper(row, col, row, col + 2)));
   }
 
   /**
