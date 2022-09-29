@@ -23,9 +23,37 @@ public class MarbleSolitaireTextView implements MarbleSolitaireView {
     this.model = model;
   }
 
+  /**
+   *
+   * @return - String of the Marble Solitaire Model
+   */
+  @Override
   public String toString(){
-    return "";
+
+    StringBuilder blankBoard = new StringBuilder();
+    int size = model.getBoardSize();
+
+    for (int i = 0; i < size; i++) {
+      for (int j = 0; j < size; j++) {
+
+        if (model.getSlotAt(i, j) == MarbleSolitaireModelState.SlotState.Invalid) {
+          blankBoard.append("  ");
+        }
+
+        if (model.getSlotAt(i, j) == MarbleSolitaireModelState.SlotState.Empty) {
+          blankBoard.append("_ ");
+        }
+
+        if (model.getSlotAt(i, j) == MarbleSolitaireModelState.SlotState.Marble) {
+          blankBoard.append("O ");
+        }
+      }
+      while (blankBoard.charAt(blankBoard.length() - 1) == ' ') {
+        blankBoard.deleteCharAt(blankBoard.length() - 1);
+      }
+      blankBoard.append("\n");
+    }
+    blankBoard.deleteCharAt(blankBoard.length() - 1);
+    return blankBoard.toString();
   }
-
-
 }
