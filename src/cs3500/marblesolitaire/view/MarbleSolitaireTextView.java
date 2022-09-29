@@ -25,7 +25,7 @@ public class MarbleSolitaireTextView implements MarbleSolitaireView {
   }
 
   /**
-   * Returns a string rep or the Marble Solitaire Model
+   * Returns a string rep .of the Marble Solitaire Model.
    *
    * @return - String of the Marble Solitaire Model
    */
