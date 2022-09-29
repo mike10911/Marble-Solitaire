@@ -165,12 +165,12 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
   }
 
   protected boolean anyMovesLeft(int row, int col) {
-    int size = this.getBoardSize();
+    int gameBoardSize = this.getBoardSize();
 
     return ((row > 1 && this.validMoveHelper(row, col, row - 2, col)) ||
             (col > 1 && this.validMoveHelper(row, col, row, col - 2)) ||
-            (row < (size - 1) && this.validMoveHelper(row, col, row + 2, col)) ||
-            (col < (size - 1) && this.validMoveHelper(row, col, row, col + 2)));
+            (row < (gameBoardSize - 1) && this.validMoveHelper(row, col, row + 2, col)) ||
+            (col < (gameBoardSize - 1) && this.validMoveHelper(row, col, row, col + 2)));
   }
 
   /**
