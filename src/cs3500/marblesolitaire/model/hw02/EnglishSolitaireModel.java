@@ -112,7 +112,36 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
   @Override
   public void move(int fromRow, int fromCol, int toRow, int toCol) throws IllegalArgumentException {
 
+    int centerRow = (fromRow + toRow) / 2;
+    int centerCol = (fromCol + toCol) / 2;
+
+    if ((!(this.validMoveHelper(fromRow, fromCol, toRow, toCol))) ||
+            gameBoard.get(toRow).get(toCol) != SlotState.Empty) {
+      throw new IllegalArgumentException("Invalid Move Input");
+    } else {
+      gameBoard.get(fromRow).set(fromCol, SlotState.Empty);
+      gameBoard.get(centerRow).set(centerCol, SlotState.Empty);
+      gameBoard.get(toRow).set(toCol, SlotState.Marble);
+    }
+
   }
+
+  protected boolean validMoveHelper(int fromRow, int fromCol, int toRow, int toCol) {
+
+    int centerRow = (fromRow + toRow) / 2;
+    int centerCol = (fromCol + toCol) / 2;
+    int gameBoardSize = this.getBoardSize();
+
+    return ((fromRow >= 0 && fromRow < gameBoardSize) && (toRow >= 0 && toRow < gameBoardSize) &&
+            (fromCol >= 0 && fromCol < gameBoardSize) && (toCol >= 0 && toCol < gameBoardSize) &&
+            (gameBoard.get(fromRow).get(fromCol) == SlotState.Marble) &&
+            (((Math.abs(fromRow - toRow)) == 2 && (Math.abs(fromCol - toCol)) == 0) ||
+                    ((Math.abs(fromCol - toCol)) == 2 && (Math.abs(fromRow - toRow)) == 0)) &&
+            (gameBoard.get(centerRow).get(centerCol) == SlotState.Marble) &&
+            (gameBoard.get(toRow).get(toCol) == SlotState.Empty) &&
+            (gameBoard.get(toRow).get(toCol) != SlotState.Invalid));
+  }
+
 
   /**
    * Determine and return if the game is over or not. A game is over if no
