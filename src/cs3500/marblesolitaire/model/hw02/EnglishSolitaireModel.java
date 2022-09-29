@@ -68,6 +68,7 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
     this.armThickness = armThickness;
     this.emptyRow = sRow;
     this.emptyCol = sCol;
+    this.gameBoard = generateGameBoard();
   }
 
   public ArrayList<ArrayList<SlotState>> generateGameBoard() {
