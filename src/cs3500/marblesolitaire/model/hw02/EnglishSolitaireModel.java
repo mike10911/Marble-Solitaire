@@ -7,13 +7,7 @@ package cs3500.marblesolitaire.model.hw02;
 public class EnglishSolitaireModel implements MarbleSolitaireModel {
 
   int armThickness;
-
-  int sRow;
-
-  int sCol;
-
   int emptyRow;
-
   int emptyCol;
 
   /**
@@ -21,9 +15,7 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
    * Constructs a game board with arm thickness of three and a centered empty slot at [3,3].
    */
   public EnglishSolitaireModel() {
-    this.armThickness = 3;
-    this.emptyRow = armThickness;
-    this.emptyCol = armThickness;
+    this(3,3,3);
   }
 
   /**
@@ -32,16 +24,9 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
    *
    * @param sRow - (int) given row placement of the empty slot on the game board
    * @param sCol - (int) given column placement of the empty slot on the game board
-   * @throws IllegalArgumentException - When the specified position is an empty cell (invalid)
    */
   public EnglishSolitaireModel(int sRow, int sCol) {
-    if ((sRow < 2 && sCol < 2) || (sRow > 4 && sCol > 4)
-            || (sRow < 2 && sCol > 4) || (sRow > 4 && sCol < 2)) {
-      throw new IllegalArgumentException("Invalid empty cell position (" + sRow + "," + sCol + ")");
-    }
-    this.armThickness = 3;
-    this.emptyRow = sRow;
-    this.emptyCol = sCol;
+    this(3, sRow, sCol);
   }
 
 
@@ -50,15 +35,10 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
    * Constructs a game board with the given arm thickness and the centered empty slot at [armThickness, armThickness].
    *
    * @param armThickness - (int) given arm thickness of the game board
-   * @throws IllegalArgumentException - When the given armThickness is a not a positive odd integer
    */
   public EnglishSolitaireModel(int armThickness) {
-    if ((armThickness % 2 == 0) || (armThickness < 0)) {
-      throw new IllegalArgumentException("The arm thickness must be a positive and odd number");
-    }
-    this.armThickness = armThickness;
-    this.emptyRow = this.armThickness;
-    this.emptyCol = this.armThickness;
+    this(armThickness, ((armThickness + (2 * armThickness - 1)) - 1) / 2,
+            ((armThickness + ((2 * armThickness) - 1)) - 1) / 2);
   }
 
   /**
@@ -72,18 +52,20 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
    * @throws IllegalArgumentException - When the specified position is an empty cell (invalid)
    */
   public EnglishSolitaireModel(int armThickness, int sRow, int sCol) {
-    if ((sRow < (armThickness - 1) && sCol < (armThickness - 1)) || (sRow > (armThickness + 1) && sCol > (armThickness + 1))
-            || (sRow < (armThickness - 1) && sCol > (armThickness + 1)) || (sRow > (armThickness + 1) && sCol < (armThickness - 1))) {
+    if ((sRow < armThickness - 1 && sCol < armThickness - 1) ||
+            (sRow < armThickness - 1 && sCol > ((2 * armThickness) - 2)) ||
+            (sRow > ((armThickness * 2) - 2) && sCol < armThickness - 1) ||
+            (sRow > ((armThickness * 2) - 2) && sCol > ((2 * armThickness) - 2)) ||
+            (sRow < 0 || sRow > ((armThickness * 3) - 2) || sCol > ((armThickness * 3) - 2) || sCol < 0)) {
       throw new IllegalArgumentException("Invalid empty cell position (" + sRow + "," + sCol + ")");
-    }
-
-    if ((armThickness % 2 == 0) || (armThickness < 0)) {
+    } else if ((armThickness % 2 == 0) || (armThickness < 0)) {
       throw new IllegalArgumentException("The arm thickness must be a positive and odd number");
     }
 
     this.armThickness = armThickness;
     this.emptyRow = sRow;
     this.emptyCol = sCol;
+
 
   }
 
