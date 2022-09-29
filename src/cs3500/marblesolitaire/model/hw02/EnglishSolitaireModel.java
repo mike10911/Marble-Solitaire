@@ -1,21 +1,24 @@
 package cs3500.marblesolitaire.model.hw02;
 
+import java.util.ArrayList;
 
 /**
  * Represents the model of a game of English Solitaire game board. Four ways of initiating the model and 5 methods.
  */
 public class EnglishSolitaireModel implements MarbleSolitaireModel {
 
-  int armThickness;
-  int emptyRow;
-  int emptyCol;
+  protected int armThickness;
+  protected int emptyRow;
+  protected int emptyCol;
+
+  protected ArrayList<ArrayList<SlotState>> gameBoard = new ArrayList<ArrayList<SlotState>>();
 
   /**
    * The first constructor of the English Solitaire game board that takes in no parameters.
    * Constructs a game board with arm thickness of three and a centered empty slot at [3,3].
    */
   public EnglishSolitaireModel() {
-    this(3,3,3);
+    this(3, 3, 3);
   }
 
   /**
@@ -65,8 +68,28 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
     this.armThickness = armThickness;
     this.emptyRow = sRow;
     this.emptyCol = sCol;
+  }
 
-
+  public ArrayList<ArrayList<SlotState>> generateGameBoard() {
+    for (int i = 0; i < this.getBoardSize(); i++) {
+      ArrayList<SlotState> row = new ArrayList<SlotState>();
+      for (int j = 0; j < this.getBoardSize(); i++) {
+        if ((i <= (armThickness - 2) && j <= (armThickness - 2)) ||
+                (i <= (armThickness - 2) && j >= (this.getBoardSize() - (armThickness - 1))) ||
+                (i >= (this.getBoardSize() - (armThickness - 1)) &&
+                        j <= (armThickness - 2)) ||
+                (i >= (this.getBoardSize() - (armThickness - 1)) &&
+                        j >= (this.getBoardSize() - (armThickness - 1)))) {
+          row.add(SlotState.Invalid);
+        } else if (i == emptyRow && j == emptyCol) {
+          row.add(SlotState.Empty);
+        } else {
+          row.add(SlotState.Marble);
+        }
+      }
+      gameBoard.add(row);
+    }
+    return gameBoard;
   }
 
 
@@ -108,7 +131,7 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
    */
   @Override
   public int getBoardSize() {
-    return 0;
+    return (this.armThickness * 3) - 2;
   }
 
   /**
