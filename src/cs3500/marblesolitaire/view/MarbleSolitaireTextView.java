@@ -12,23 +12,25 @@ public class MarbleSolitaireTextView implements MarbleSolitaireView {
 
   /**
    * Query the model. Print the board.
+   *
    * @param model - model of the game board
    * @throws IllegalArgumentException - When the given model is null
    */
-  public MarbleSolitaireTextView(MarbleSolitaireModelState model){
+  public MarbleSolitaireTextView(MarbleSolitaireModelState model) {
 
-    if (model == null){
+    if (model == null) {
       throw new IllegalArgumentException("Model state must not be null");
     }
     this.model = model;
   }
 
   /**
+   * Returns a string rep or the Marble Solitaire Model
    *
    * @return - String of the Marble Solitaire Model
    */
   @Override
-  public String toString(){
+  public String toString() {
 
     StringBuilder blankBoard = new StringBuilder();
     int size = model.getBoardSize();

@@ -145,14 +145,14 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
     int centerCol = (fromCol + toCol) / 2;
     int gameBoardSize = this.getBoardSize();
 
-    return ((fromRow >= 0 && fromRow < gameBoardSize) && (toRow >= 0 && toRow < gameBoardSize) &&
-            (fromCol >= 0 && fromCol < gameBoardSize) && (toCol >= 0 && toCol < gameBoardSize) &&
-            (gameBoard.get(fromRow).get(fromCol) == SlotState.Marble) &&
-            (((Math.abs(fromRow - toRow)) == 2 && (Math.abs(fromCol - toCol)) == 0) ||
-                    ((Math.abs(fromCol - toCol)) == 2 && (Math.abs(fromRow - toRow)) == 0)) &&
-            (gameBoard.get(centerRow).get(centerCol) == SlotState.Marble) &&
-            (gameBoard.get(toRow).get(toCol) == SlotState.Empty) &&
-            (gameBoard.get(toRow).get(toCol) != SlotState.Invalid));
+    return ((fromRow >= 0 && fromRow < gameBoardSize) && (toRow >= 0 && toRow < gameBoardSize)
+            && (fromCol >= 0 && fromCol < gameBoardSize) && (toCol >= 0 && toCol < gameBoardSize)
+            && (gameBoard.get(fromRow).get(fromCol) == SlotState.Marble)
+            && (((Math.abs(fromRow - toRow)) == 2 && (Math.abs(fromCol - toCol)) == 0)
+            || ((Math.abs(fromCol - toCol)) == 2 && (Math.abs(fromRow - toRow)) == 0))
+            && (gameBoard.get(centerRow).get(centerCol) == SlotState.Marble)
+            && (gameBoard.get(toRow).get(toCol) == SlotState.Empty)
+            && (gameBoard.get(toRow).get(toCol) != SlotState.Invalid));
   }
 
 
@@ -180,10 +180,11 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
   protected boolean anyMovesLeft(int row, int col) {
     int gameBoardSize = this.getBoardSize();
 
-    return ((row > 1 && this.validMoveHelper(row, col, row - 2, col)) ||
-            (col > 1 && this.validMoveHelper(row, col, row, col - 2)) ||
-            (row < (gameBoardSize - 1) && this.validMoveHelper(row, col, row + 2, col)) ||
-            (col < (gameBoardSize - 1) && this.validMoveHelper(row, col, row, col + 2)));
+    return ((row > 1 && this.validMoveHelper(row, col, row - 2, col))
+            || (col > 1 && this.validMoveHelper(row, col, row, col - 2))
+            ||
+            (row < (gameBoardSize - 1) && this.validMoveHelper(row, col, row + 2, col))
+            || (col < (gameBoardSize - 1) && this.validMoveHelper(row, col, row, col + 2)));
   }
 
   /**
