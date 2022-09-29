@@ -63,18 +63,19 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
       throw new IllegalArgumentException("Invalid empty cell position (" + sRow + "," + sCol + ")");
     } else if ((armThickness % 2 == 0) || (armThickness < 0)) {
       throw new IllegalArgumentException("The arm thickness must be a positive and odd number");
-    }
+    } else {
+        this.armThickness = armThickness;
+        this.emptyRow = sRow;
+        this.emptyCol = sCol;
+        this.gameBoard = this.generateGameBoard();
 
-    this.armThickness = armThickness;
-    this.emptyRow = sRow;
-    this.emptyCol = sCol;
-    this.gameBoard = generateGameBoard();
+    }
   }
 
-  public ArrayList<ArrayList<SlotState>> generateGameBoard() {
+  private ArrayList<ArrayList<SlotState>> generateGameBoard() {
     for (int i = 0; i < this.getBoardSize(); i++) {
       ArrayList<SlotState> row = new ArrayList<SlotState>();
-      for (int j = 0; j < this.getBoardSize(); i++) {
+      for (int j = 0; j < this.getBoardSize(); j++) {
         if ((i <= (armThickness - 2) && j <= (armThickness - 2)) ||
                 (i <= (armThickness - 2) && j >= (this.getBoardSize() - (armThickness - 1))) ||
                 (i >= (this.getBoardSize() - (armThickness - 1)) &&
