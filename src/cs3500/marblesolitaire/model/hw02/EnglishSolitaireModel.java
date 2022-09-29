@@ -194,7 +194,11 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
    */
   @Override
   public SlotState getSlotAt(int row, int col) throws IllegalArgumentException {
-    return null;
+    if (row < 0 || col < 0 || row > getBoardSize() || col > getBoardSize()) {
+      throw new IllegalArgumentException("There is not a valid slot state at (" + row + col + ")");
+    } else {
+      return gameBoard.get(row).get(col);
+    }
   }
 
   /**
@@ -204,6 +208,17 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
    */
   @Override
   public int getScore() {
-    return 0;
+
+    int gameBoardSize = this.getBoardSize();
+    int score = 0;
+
+    for (int i = 0; i < gameBoardSize; i++) {
+      for (int j = 0; j < gameBoardSize; j++) {
+        if ((gameBoard.get(i).get(j)) == SlotState.Marble) {
+          score++;
+        }
+      }
+    }
+    return score;
   }
 }
