@@ -1,32 +1,31 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import cs3500.marblesolitaire.model.hw02.EnglishSolitaireModel;
-import cs3500.marblesolitaire.model.hw02.MarbleSolitaireModelState;
-
-import cs3500.marblesolitaire.view.MarbleSolitaireTextView;
-
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import cs3500.marblesolitaire.model.hw02.EnglishSolitaireModel;
+import cs3500.marblesolitaire.model.hw02.MarbleSolitaireModelState;
+import cs3500.marblesolitaire.view.MarbleSolitaireTextView;
+
+
 /**
- * Represents the test class.
+ * Marble Solitaire .test class
  */
 public class MarbleSolitaireTest {
-  EnglishSolitaireModel m1;
-  EnglishSolitaireModel m2;
-  EnglishSolitaireModel m3;
-  EnglishSolitaireModel m4;
-  EnglishSolitaireModel m5;
-  EnglishSolitaireModel m6;
-  EnglishSolitaireModel m7;
-  EnglishSolitaireModel m8;
-  EnglishSolitaireModel m9;
-  EnglishSolitaireModel m10;
-  EnglishSolitaireModel m11;
+  EnglishSolitaireModel marble1;
+  EnglishSolitaireModel marble2;
+  EnglishSolitaireModel marble3;
+  EnglishSolitaireModel marble4;
+  EnglishSolitaireModel marble5;
+  EnglishSolitaireModel marble6;
+  EnglishSolitaireModel marble7;
+  EnglishSolitaireModel marble8;
+  EnglishSolitaireModel marble9;
+  EnglishSolitaireModel marble10;
+  EnglishSolitaireModel marble11;
 
   MarbleSolitaireTextView tv1;
   MarbleSolitaireTextView tv2;
@@ -42,110 +41,28 @@ public class MarbleSolitaireTest {
 
   @Before
   public void init() {
-    this.m1 = new EnglishSolitaireModel(3, 3, 3);
-    this.m2 = new EnglishSolitaireModel();
-    this.m3 = new EnglishSolitaireModel(3, 0, 2);
-    this.m5 = new EnglishSolitaireModel(5, 6, 6);
-    this.m6 = new EnglishSolitaireModel(7, 17, 12);
-    this.m7 = new EnglishSolitaireModel(15, 17, 17);
-    this.m9 = new EnglishSolitaireModel(3);
-    this.m10 = new EnglishSolitaireModel(3, 3);
-    this.m11 = new EnglishSolitaireModel(3);
+    this.marble1 = new EnglishSolitaireModel(3, 3, 3);
+    this.marble2 = new EnglishSolitaireModel();
+    this.marble3 = new EnglishSolitaireModel(3, 0, 2);
+    this.marble5 = new EnglishSolitaireModel(5, 6, 6);
+    this.marble6 = new EnglishSolitaireModel(7, 17, 12);
+    this.marble7 = new EnglishSolitaireModel(15, 17, 17);
+    this.marble9 = new EnglishSolitaireModel(3);
+    this.marble10 = new EnglishSolitaireModel(3, 3);
+    this.marble11 = new EnglishSolitaireModel(3);
 
 
-    this.tv1 = new MarbleSolitaireTextView(m1);
-    this.tv2 = new MarbleSolitaireTextView(m2);
-    this.tv3 = new MarbleSolitaireTextView(m3);
-    this.tv5 = new MarbleSolitaireTextView(m5);
-    this.tv6 = new MarbleSolitaireTextView(m6);
-    this.tv7 = new MarbleSolitaireTextView(m7);
-    this.tv9 = new MarbleSolitaireTextView(m9);
-    this.tv10 = new MarbleSolitaireTextView(m10);
-    this.tv11 = new MarbleSolitaireTextView(m11);
-
-  }
-
-
-  @Test
-  public void testInvalidInitialization() {
-    try {
-      this.m4 = new EnglishSolitaireModel(3, 0, 5);
-      this.tv4 = new MarbleSolitaireTextView(m1);
-      fail("IllegalArgumentException");
-    } catch (IllegalArgumentException e) {
-      // no catch
-    }
-    try {
-      this.m2 = new EnglishSolitaireModel(3, 0, 0);
-      this.tv2 = new MarbleSolitaireTextView(m2);
-      fail("IllegalArgumentException");
-    } catch (IllegalArgumentException e) {
-      // no catch
-    }
-    try {
-      this.m6 = new EnglishSolitaireModel(7, -1, 4);
-      this.tv6 = new MarbleSolitaireTextView(m6);
-      fail("IllegalArgumentException");
-    } catch (IllegalArgumentException e) {
-      // no catch
-    }
-    try {
-      this.m8 = new EnglishSolitaireModel(5, 4, -3);
-      this.tv8 = new MarbleSolitaireTextView(m8);
-      fail("IllegalArgumentException");
-    } catch (IllegalArgumentException e) {
-      // no catch
-    }
-    try {
-      this.m1 = new EnglishSolitaireModel(-2, 3, 3);
-      this.tv1 = new MarbleSolitaireTextView(m1);
-      fail("IllegalArgumentException");
-    } catch (IllegalArgumentException e) {
-      // no catch
-    }
-    try {
-      this.m1 = new EnglishSolitaireModel(2);
-      this.tv1 = new MarbleSolitaireTextView(m1);
-      fail("IllegalArgumentException");
-    } catch (IllegalArgumentException e) {
-      // no catch
-    }
-    try {
-      this.m10 = new EnglishSolitaireModel(8, 8);
-      this.tv10 = new MarbleSolitaireTextView(m10);
-      fail("IllegalArgumentException");
-    } catch (IllegalArgumentException e) {
-      // no catch
-    }
-    try {
-      this.m10 = new EnglishSolitaireModel(4);
-      this.tv10 = new MarbleSolitaireTextView(m10);
-      fail("IllegalArgumentException");
-    } catch (IllegalArgumentException e) {
-      // no catch
-    }
-    try {
-      this.m10 = new EnglishSolitaireModel(4, 3, 3);
-      this.tv10 = new MarbleSolitaireTextView(m10);
-      fail("IllegalArgumentException");
-    } catch (IllegalArgumentException e) {
-      // no catch
-    }
+    this.tv1 = new MarbleSolitaireTextView(marble1);
+    this.tv2 = new MarbleSolitaireTextView(marble2);
+    this.tv3 = new MarbleSolitaireTextView(marble3);
+    this.tv5 = new MarbleSolitaireTextView(marble5);
+    this.tv6 = new MarbleSolitaireTextView(marble6);
+    this.tv7 = new MarbleSolitaireTextView(marble7);
+    this.tv9 = new MarbleSolitaireTextView(marble9);
+    this.tv10 = new MarbleSolitaireTextView(marble10);
+    this.tv11 = new MarbleSolitaireTextView(marble11);
 
   }
-
-
-  @Test
-  public void testInvalidModelView() {
-    try {
-      this.m4 = null;
-      this.tv4 = new MarbleSolitaireTextView(m4);
-      fail("IllegalArgumentException");
-    } catch (IllegalArgumentException e) {
-      // no catch
-    }
-  }
-
   @Test
   public void testToString() {
     init();
@@ -300,28 +217,28 @@ public class MarbleSolitaireTest {
   @Test
   public void testValidMove() {
     init();
-    m2.move(5, 3, 3, 3);
-    m2.toString();
+    marble2.move(5, 3, 3, 3);
+    marble2.toString();
 
-    m2.move(2, 5, 2, 3);
-    assertEquals(MarbleSolitaireModelState.SlotState.Marble, m2.getSlotAt(2, 3));
-    assertEquals(MarbleSolitaireModelState.SlotState.Empty, m2.getSlotAt(2, 4));
-    assertEquals(MarbleSolitaireModelState.SlotState.Empty, m2.getSlotAt(2, 5));
+    marble2.move(2, 5, 2, 3);
+    assertEquals(MarbleSolitaireModelState.SlotState.Marble, marble2.getSlotAt(2, 3));
+    assertEquals(MarbleSolitaireModelState.SlotState.Empty, marble2.getSlotAt(2, 4));
+    assertEquals(MarbleSolitaireModelState.SlotState.Empty, marble2.getSlotAt(2, 5));
 
-    m2.move(3, 1, 3, 3);
-    assertEquals(MarbleSolitaireModelState.SlotState.Marble, m2.getSlotAt(3, 3));
-    assertEquals(MarbleSolitaireModelState.SlotState.Empty, m2.getSlotAt(3, 1));
-    assertEquals(MarbleSolitaireModelState.SlotState.Empty, m2.getSlotAt(3, 2));
+    marble2.move(3, 1, 3, 3);
+    assertEquals(MarbleSolitaireModelState.SlotState.Marble, marble2.getSlotAt(3, 3));
+    assertEquals(MarbleSolitaireModelState.SlotState.Empty, marble2.getSlotAt(3, 1));
+    assertEquals(MarbleSolitaireModelState.SlotState.Empty, marble2.getSlotAt(3, 2));
 
-    assertEquals(MarbleSolitaireModelState.SlotState.Marble, m2.getSlotAt(3, 3));
-    assertEquals(MarbleSolitaireModelState.SlotState.Empty, m2.getSlotAt(4, 3));
-    assertEquals(MarbleSolitaireModelState.SlotState.Empty, m2.getSlotAt(5, 3));
-    assertEquals(MarbleSolitaireModelState.SlotState.Invalid, m2.getSlotAt(0, 0));
+    assertEquals(MarbleSolitaireModelState.SlotState.Marble, marble2.getSlotAt(3, 3));
+    assertEquals(MarbleSolitaireModelState.SlotState.Empty, marble2.getSlotAt(4, 3));
+    assertEquals(MarbleSolitaireModelState.SlotState.Empty, marble2.getSlotAt(5, 3));
+    assertEquals(MarbleSolitaireModelState.SlotState.Invalid, marble2.getSlotAt(0, 0));
 
-    m2.move(2, 3, 4, 3);
-    assertEquals(MarbleSolitaireModelState.SlotState.Marble, m2.getSlotAt(4, 3));
-    assertEquals(MarbleSolitaireModelState.SlotState.Empty, m2.getSlotAt(2, 3));
-    assertEquals(MarbleSolitaireModelState.SlotState.Empty, m2.getSlotAt(3, 3));
+    marble2.move(2, 3, 4, 3);
+    assertEquals(MarbleSolitaireModelState.SlotState.Marble, marble2.getSlotAt(4, 3));
+    assertEquals(MarbleSolitaireModelState.SlotState.Empty, marble2.getSlotAt(2, 3));
+    assertEquals(MarbleSolitaireModelState.SlotState.Empty, marble2.getSlotAt(3, 3));
 
   }
 
@@ -330,37 +247,37 @@ public class MarbleSolitaireTest {
     init();
 
     try {
-      m6.move(0, 4, -1, 10);
+      marble6.move(0, 4, -1, 10);
       fail("IllegalArgumentException");
     } catch (IllegalArgumentException e) {
       // no catch
     }
     try {
-      m2.move(3, 3, -1, 3);
+      marble2.move(3, 3, -1, 3);
       fail("IllegalArgumentException");
     } catch (IllegalArgumentException e) {
       // no catch
     }
     try {
-      m5.move(6, 11, 6, 13);
+      marble5.move(6, 11, 6, 13);
       fail("IllegalArgumentException");
     } catch (IllegalArgumentException e) {
       // no catch
     }
     try {
-      m2.move(3, 3, 5, 3);
+      marble2.move(3, 3, 5, 3);
       fail("IllegalArgumentException");
     } catch (IllegalArgumentException e) {
       // no catch
     }
     try {
-      m2.move(2, 3, 3, 3);
+      marble2.move(2, 3, 3, 3);
       fail("IllegalArgumentException");
     } catch (IllegalArgumentException e) {
       // no catch
     }
     try {
-      m2.move(0, 0, 3, 3);
+      marble2.move(0, 0, 3, 3);
       fail("IllegalArgumentException");
     } catch (IllegalArgumentException e) {
       // no catch
@@ -372,13 +289,13 @@ public class MarbleSolitaireTest {
   public void testValidGetSlotAt() {
     init();
     assertEquals(MarbleSolitaireModelState.SlotState.Empty,
-            m3.getSlotAt(0, 2));
+            marble3.getSlotAt(0, 2));
     assertEquals(MarbleSolitaireModelState.SlotState.Invalid,
-            m2.getSlotAt(0, 1));
+            marble2.getSlotAt(0, 1));
     assertEquals(MarbleSolitaireModelState.SlotState.Marble,
-            m2.getSlotAt(4, 3));
+            marble2.getSlotAt(4, 3));
     assertEquals(MarbleSolitaireModelState.SlotState.Empty,
-            m2.getSlotAt(3, 3));
+            marble2.getSlotAt(3, 3));
   }
 
   @Test
@@ -386,14 +303,14 @@ public class MarbleSolitaireTest {
     init();
 
     try {
-      m2.getSlotAt(8, 8);
+      marble2.getSlotAt(8, 8);
       fail("IllegalArgumentException should be thrown");
     } catch (IllegalArgumentException e) {
       // no catch
     }
 
     try {
-      m2.getSlotAt(-1, -1);
+      marble2.getSlotAt(-1, -1);
       fail("IllegalArgumentException");
     } catch (IllegalArgumentException e) {
       // no catch
@@ -404,54 +321,134 @@ public class MarbleSolitaireTest {
   @Test
   public void testGetScore() {
     init();
-    assertEquals(32, m2.getScore());
-    m2.move(5, 3, 3, 3);
-    assertEquals(31, m2.getScore());
-    m2.move(2, 3, 4, 3);
-    assertEquals(30, m2.getScore());
+    assertEquals(32, marble2.getScore());
+    marble2.move(5, 3, 3, 3);
+    assertEquals(31, marble2.getScore());
+    marble2.move(2, 3, 4, 3);
+    assertEquals(30, marble2.getScore());
   }
 
   @Test
   public void testIsGameOver() {
     init();
 
-    m2.move(6, 4, 4, 4);
-    m2.move(2, 2, 4, 2);
-    m2.move(0, 2, 2, 2);
-    m2.move(1, 4, 3, 4);
-    m2.move(3, 4, 5, 4);
-    m2.move(5, 4, 5, 2);
-    m2.move(5, 2, 3, 2);
-    m2.move(3, 2, 1, 2);
-    m2.move(2, 0, 4, 0);
-    m2.move(4, 0, 4, 2);
-    m2.move(4, 2, 4, 4);
-    m2.move(2, 6, 2, 4);
-    m2.move(2, 3, 2, 5);
-    m2.move(4, 6, 2, 6);
-    m2.move(2, 6, 2, 4);
-    m2.move(0, 4, 0, 2);
-    m2.move(0, 2, 2, 2);
-    m2.move(2, 1, 2, 3);
-    m2.move(2, 3, 2, 5);
-    m2.move(2, 5, 4, 5);
-    m2.move(4, 5, 4, 3);
-    m2.move(4, 3, 2, 3);
-    m2.move(1, 3, 3, 3);
-    assertTrue(m2.isGameOver());
+    marble2.move(6, 4, 4, 4);
+    marble2.move(2, 2, 4, 2);
+    marble2.move(0, 2, 2, 2);
+    marble2.move(1, 4, 3, 4);
+    marble2.move(3, 4, 5, 4);
+    marble2.move(5, 4, 5, 2);
+    marble2.move(5, 2, 3, 2);
+    marble2.move(3, 2, 1, 2);
+    marble2.move(2, 0, 4, 0);
+    marble2.move(4, 0, 4, 2);
+    marble2.move(4, 2, 4, 4);
+    marble2.move(2, 6, 2, 4);
+    marble2.move(2, 3, 2, 5);
+    marble2.move(4, 6, 2, 6);
+    marble2.move(2, 6, 2, 4);
+    marble2.move(0, 4, 0, 2);
+    marble2.move(0, 2, 2, 2);
+    marble2.move(2, 1, 2, 3);
+    marble2.move(2, 3, 2, 5);
+    marble2.move(2, 5, 4, 5);
+    marble2.move(4, 5, 4, 3);
+    marble2.move(4, 3, 2, 3);
+    marble2.move(1, 3, 3, 3);
+    assertTrue(marble2.isGameOver());
 
-    m2.move(3, 1, 3, 3);
-    m2.toString();
-    m2.move(5, 2, 3, 2);
-    m2.move(4, 0, 4, 2);
-    m2.move(4, 3, 4, 1);
-    m2.move(4, 5, 4, 3);
-    m2.move(6, 4, 4, 4);
-    m2.move(3, 4, 5, 4);
-    m2.move(6, 2, 6, 4);
-    assertFalse(m2.isGameOver());
+    marble2.move(3, 1, 3, 3);
+    marble2.toString();
+    marble2.move(5, 2, 3, 2);
+    marble2.move(4, 0, 4, 2);
+    marble2.move(4, 3, 4, 1);
+    marble2.move(4, 5, 4, 3);
+    marble2.move(6, 4, 4, 4);
+    marble2.move(3, 4, 5, 4);
+    marble2.move(6, 2, 6, 4);
+    assertFalse(marble2.isGameOver());
 
 
+  }
+
+  @Test
+  public void testInvalidInitialization() {
+    try {
+      this.marble4 = new EnglishSolitaireModel(3, 0, 5);
+      this.tv4 = new MarbleSolitaireTextView(marble1);
+      fail("IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+      // no catch
+    }
+    try {
+      this.marble2 = new EnglishSolitaireModel(3, 0, 0);
+      this.tv2 = new MarbleSolitaireTextView(marble2);
+      fail("IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+      // no catch
+    }
+    try {
+      this.marble6 = new EnglishSolitaireModel(7, -1, 4);
+      this.tv6 = new MarbleSolitaireTextView(marble6);
+      fail("IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+      // no catch
+    }
+    try {
+      this.marble8 = new EnglishSolitaireModel(5, 4, -3);
+      this.tv8 = new MarbleSolitaireTextView(marble8);
+      fail("IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+      // no catch
+    }
+    try {
+      this.marble1 = new EnglishSolitaireModel(-2, 3, 3);
+      this.tv1 = new MarbleSolitaireTextView(marble1);
+      fail("IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+      // no catch
+    }
+    try {
+      this.marble1 = new EnglishSolitaireModel(2);
+      this.tv1 = new MarbleSolitaireTextView(marble1);
+      fail("IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+      // no catch
+    }
+    try {
+      this.marble10 = new EnglishSolitaireModel(8, 8);
+      this.tv10 = new MarbleSolitaireTextView(marble10);
+      fail("IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+      // no catch
+    }
+    try {
+      this.marble10 = new EnglishSolitaireModel(4);
+      this.tv10 = new MarbleSolitaireTextView(marble10);
+      fail("IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+      // no catch
+    }
+    try {
+      this.marble10 = new EnglishSolitaireModel(4, 3, 3);
+      this.tv10 = new MarbleSolitaireTextView(marble10);
+      fail("IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+      // no catch
+    }
+
+  }
+
+
+  @Test
+  public void testInvalidModelView() {
+    try {
+      this.marble4 = null;
+      this.tv4 = new MarbleSolitaireTextView(marble4);
+      fail("IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+      // no catch
+    }
   }
 
 }
