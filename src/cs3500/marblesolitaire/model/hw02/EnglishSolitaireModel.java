@@ -3,7 +3,8 @@ package cs3500.marblesolitaire.model.hw02;
 import java.util.ArrayList;
 
 /**
- * Represents the model of a game of English Solitaire game board. Four ways of initiating the model and 5 methods.
+ * Represents the model of a game of English Solitaire game board.
+ * Four ways of initiating the model and 5 methods.
  */
 public class EnglishSolitaireModel implements MarbleSolitaireModel {
 
@@ -23,7 +24,8 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
 
   /**
    * The second constructor of the English Solitaire game board that takes in two parameters.
-   * Constructs a game board with arm thickness of three and the empty slot at the given [row,column].
+   * Constructs a game board with arm thickness of three and the empty slot at the
+   * given [row,column].
    *
    * @param sRow - (int) given row placement of the empty slot on the game board
    * @param sCol - (int) given column placement of the empty slot on the game board
@@ -35,7 +37,8 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
 
   /**
    * The third constructor of the English Solitaire game board that takes in 1 parameter.
-   * Constructs a game board with the given arm thickness and the centered empty slot at [armThickness, armThickness].
+   * Constructs a game board with the given arm thickness and the centered empty slot
+   * at [armThickness, armThickness].
    *
    * @param armThickness - (int) given arm thickness of the game board
    */
@@ -46,7 +49,8 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
 
   /**
    * The fourth constructor of the English Solitaire game board that takes in 3 parameters.
-   * Constructs a game board with the given arm thickness and the empty slot at the given [row,column].
+   * Constructs a game board with the given arm thickness and the empty slot at the
+   * given [row,column].
    *
    * @param armThickness - (int) given arm thickness of the game board fj
    * @param sRow         - (int) given row placement of the empty slot on the game board
@@ -55,20 +59,24 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
    * @throws IllegalArgumentException - When the specified position is an empty cell (invalid)
    */
   public EnglishSolitaireModel(int armThickness, int sRow, int sCol) {
-    if ((sRow < armThickness - 1 && sCol < armThickness - 1) ||
-            (sRow < armThickness - 1 && sCol > ((2 * armThickness) - 2)) ||
-            (sRow > ((armThickness * 2) - 2) && sCol < armThickness - 1) ||
-            (sRow > ((armThickness * 2) - 2) && sCol > ((2 * armThickness) - 2)) ||
-            (sRow < 0 || sRow > ((armThickness * 3) - 2) || sCol > ((armThickness * 3) - 2) || sCol < 0)) {
-      throw new IllegalArgumentException("Invalid empty cell position (" + sRow + "," + sCol + ")");
+    if ((sRow < armThickness - 1 && sCol < armThickness - 1)
+            ||
+            (sRow < armThickness - 1 && sCol > ((2 * armThickness) - 2))
+            ||
+            (sRow > ((armThickness * 2) - 2) && sCol < armThickness - 1)
+            ||
+            (sRow > ((armThickness * 2) - 2) && sCol > ((2 * armThickness) - 2))
+            ||
+            (sRow < 0 || sRow > ((armThickness * 3) - 2)
+                    || sCol > ((armThickness * 3) - 2) || sCol < 0)) {
+      throw new IllegalArgumentException("Invalid empty cell at (" + sRow + "," + sCol + ")");
     } else if ((armThickness % 2 == 0) || (armThickness < 0)) {
       throw new IllegalArgumentException("The arm thickness must be a positive and odd number");
     } else {
-        this.armThickness = armThickness;
-        this.emptyRow = sRow;
-        this.emptyCol = sCol;
-        this.gameBoard = this.generateGameBoard();
-
+      this.armThickness = armThickness;
+      this.emptyRow = sRow;
+      this.emptyCol = sCol;
+      this.gameBoard = this.generateGameBoard();
     }
   }
 
@@ -76,10 +84,13 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
     for (int i = 0; i < this.getBoardSize(); i++) {
       ArrayList<SlotState> row = new ArrayList<SlotState>();
       for (int j = 0; j < this.getBoardSize(); j++) {
-        if ((i <= (armThickness - 2) && j <= (armThickness - 2)) ||
-                (i <= (armThickness - 2) && j >= (this.getBoardSize() - (armThickness - 1))) ||
+        if ((i <= (armThickness - 2) && j <= (armThickness - 2))
+                ||
+                (i <= (armThickness - 2) && j >= (this.getBoardSize() - (armThickness - 1)))
+                ||
                 (i >= (this.getBoardSize() - (armThickness - 1)) &&
-                        j <= (armThickness - 2)) ||
+                        j <= (armThickness - 2))
+                ||
                 (i >= (this.getBoardSize() - (armThickness - 1)) &&
                         j >= (this.getBoardSize() - (armThickness - 1)))) {
           row.add(SlotState.Invalid);
@@ -116,7 +127,8 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
     int centerRow = (fromRow + toRow) / 2;
     int centerCol = (fromCol + toCol) / 2;
 
-    if ((!(this.validMoveHelper(fromRow, fromCol, toRow, toCol))) ||
+    if ((!(this.validMoveHelper(fromRow, fromCol, toRow, toCol)))
+            ||
             gameBoard.get(toRow).get(toCol) != SlotState.Empty) {
       throw new IllegalArgumentException("Invalid Move Input");
     } else {
@@ -133,14 +145,14 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
     int centerCol = (fromCol + toCol) / 2;
     int gameBoardSize = this.getBoardSize();
 
-    return ((fromRow >= 0 && fromRow < gameBoardSize) && (toRow >= 0 && toRow < gameBoardSize) &&
-            (fromCol >= 0 && fromCol < gameBoardSize) && (toCol >= 0 && toCol < gameBoardSize) &&
-            (gameBoard.get(fromRow).get(fromCol) == SlotState.Marble) &&
-            (((Math.abs(fromRow - toRow)) == 2 && (Math.abs(fromCol - toCol)) == 0) ||
-                    ((Math.abs(fromCol - toCol)) == 2 && (Math.abs(fromRow - toRow)) == 0)) &&
-            (gameBoard.get(centerRow).get(centerCol) == SlotState.Marble) &&
-            (gameBoard.get(toRow).get(toCol) == SlotState.Empty) &&
-            (gameBoard.get(toRow).get(toCol) != SlotState.Invalid));
+    return ((fromRow >= 0 && fromRow < gameBoardSize) && (toRow >= 0 && toRow < gameBoardSize)
+            && (fromCol >= 0 && fromCol < gameBoardSize) && (toCol >= 0 && toCol < gameBoardSize)
+            && (gameBoard.get(fromRow).get(fromCol) == SlotState.Marble)
+            && (((Math.abs(fromRow - toRow)) == 2 && (Math.abs(fromCol - toCol)) == 0)
+            || ((Math.abs(fromCol - toCol)) == 2 && (Math.abs(fromRow - toRow)) == 0))
+            && (gameBoard.get(centerRow).get(centerCol) == SlotState.Marble)
+            && (gameBoard.get(toRow).get(toCol) == SlotState.Empty)
+            && (gameBoard.get(toRow).get(toCol) != SlotState.Invalid));
   }
 
 
@@ -168,10 +180,11 @@ public class EnglishSolitaireModel implements MarbleSolitaireModel {
   protected boolean anyMovesLeft(int row, int col) {
     int gameBoardSize = this.getBoardSize();
 
-    return ((row > 1 && this.validMoveHelper(row, col, row - 2, col)) ||
-            (col > 1 && this.validMoveHelper(row, col, row, col - 2)) ||
-            (row < (gameBoardSize - 1) && this.validMoveHelper(row, col, row + 2, col)) ||
-            (col < (gameBoardSize - 1) && this.validMoveHelper(row, col, row, col + 2)));
+    return ((row > 1 && this.validMoveHelper(row, col, row - 2, col))
+            || (col > 1 && this.validMoveHelper(row, col, row, col - 2))
+            ||
+            (row < (gameBoardSize - 1) && this.validMoveHelper(row, col, row + 2, col))
+            || (col < (gameBoardSize - 1) && this.validMoveHelper(row, col, row, col + 2)));
   }
 
   /**
