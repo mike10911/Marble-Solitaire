@@ -63,6 +63,7 @@ public class MarbleSolitaireTest {
     this.tv11 = new MarbleSolitaireTextView(marble11);
 
   }
+
   @Test
   public void testToString() {
     init();
