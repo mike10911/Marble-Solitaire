@@ -1,5 +1,7 @@
 package cs3500.marblesolitaire.view;
 
+import java.io.IOException;
+
 import cs3500.marblesolitaire.model.hw02.MarbleSolitaireModelState;
 
 /**
@@ -8,7 +10,9 @@ import cs3500.marblesolitaire.model.hw02.MarbleSolitaireModelState;
  */
 public class MarbleSolitaireTextView implements MarbleSolitaireView {
 
-  MarbleSolitaireModelState model;
+  private final MarbleSolitaireModelState model;
+
+  private final Appendable app;
 
   /**
    * Query the model. Print the board.
@@ -22,7 +26,24 @@ public class MarbleSolitaireTextView implements MarbleSolitaireView {
       throw new IllegalArgumentException("Model state must not be null");
     }
     this.model = model;
+    this.app = System.out;
   }
+
+  /**
+   * Second constructor that allow .the board to be added to an appendable.
+   *
+   * @param model - given model
+   * @param app   - given appendable
+   */
+  public MarbleSolitaireTextView(MarbleSolitaireModelState model, Appendable app) {
+
+    if (model == null || app == null) {
+      throw new IllegalArgumentException("Model state or Appendable must not be null");
+    }
+    this.model = model;
+    this.app = app;
+  }
+
 
   /**
    * Returns a string rep .of the Marble Solitaire Model.
@@ -57,5 +78,30 @@ public class MarbleSolitaireTextView implements MarbleSolitaireView {
     }
     blankBoard.deleteCharAt(blankBoard.length() - 1);
     return blankBoard.toString();
+  }
+
+  /**
+   * Render the board to the provided data destination. The board should be rendered exactly
+   * in the format produced by the toString method above
+   *
+   * @throws IOException if transmission of the board to the provided data destination fails
+   */
+  @Override
+  public void renderBoard() throws IOException {
+    app.append(this.toString());
+
+
+  }
+
+  /**
+   * Render a specific message to the provided data destination.
+   *
+   * @param message the message to be transmitted
+   * @throws IOException if transmission of the board to the provided data destination fails
+   */
+  @Override
+  public void renderMessage(String message) throws IOException {
+    app.append(message);
+
   }
 }

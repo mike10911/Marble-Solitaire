@@ -5,21 +5,23 @@ import cs3500.marblesolitaire.model.hw02.EnglishSolitaireModel;
  */
 public class Hw03TypeChecks {
 
+  /**
+   * main type. checks.
+   *
+   * @param args - args for main
+   */
   public static void main(String[] args) {
     Readable rd = null;
     Appendable ap = null;
     helper(new EnglishSolitaireModel(),
             rd, ap);
-    helper(new EnglishSolitaireModel
-                    (3, 3),
-            rd, ap);
+    helper(new EnglishSolitaireModel(3, 3), rd, ap);
   }
 
-  private static void helper
-          (cs3500.marblesolitaire.model.hw02.MarbleSolitaireModel model,
-           Readable rd,Appendable ap) {
+  private static void helper(cs3500.marblesolitaire.model.hw02.MarbleSolitaireModel model,
+                             Readable rd, Appendable ap) {
     new cs3500.marblesolitaire.controller.MarbleSolitaireControllerImpl(model,
-            new cs3500.marblesolitaire.view.MarbleSolitaireTextView(model,ap),rd);
+            new cs3500.marblesolitaire.view.MarbleSolitaireTextView(model, ap), rd);
   }
 
 }
